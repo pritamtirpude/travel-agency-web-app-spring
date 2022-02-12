@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Home page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+			<a sec:authorize="hasRole('EMPLOYEE')" th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
+			<a th:href="@{/showOffer}" class="btn btn-primary">Show our offer</a>	
+			<a th:href="@{/showOfferForNextMonth}" class="btn btn-primary">Show next month offer</a>	
+			<a sec:authorize="hasRole('CLIENT')" th:href="@{/addComment}" class="btn btn-primary">Add Comment</a>	
+			<a sec:authorize="isAnonymous()" th:href="@{/login}" class="btn btn-secondary float-right">Login</a>
+			<a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">Logout</a>
+			
+			<br>
+			<br>
+			
+			<h1>Hello <span sec:authorize="isAuthenticated()">
+				<span sec:authentication="name"></span>
+			</span>
+			<span sec:authorize="isAnonymous()">Dear guest</span>
+			</h1>
+			<h2>Welcome to our travel agency</h2>
+	</div>
+	
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+</body>
+</html>
